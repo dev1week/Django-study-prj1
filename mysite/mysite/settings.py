@@ -25,10 +25,15 @@ SECRET_KEY = '1tj6_1pv@qpf5+6^w+iolmcj!yjwiw@^feil^&j529#=l!2l$f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
+#1. runserver를 기동할 서버의 IP를 설정함 
+#개발 모드임을 감안하여 localhost에서만 접속 가능하도록 설정 
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 # Application definition
+
+#2. 프로젝트에 포함되는 앱은 모두 설정 파일에 등록되어야한다.
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polls.apps.PollsConfig', #장고가 설정 클래스를 찾을 수 있도록 설정함 
 ]
 
 MIDDLEWARE = [
@@ -73,6 +79,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+#3. 데이터 베이스 엔진 설정 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -104,13 +111,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+#4. 타임존 지정 
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
+#장고가 알아서 시간대 조정 
+#DB에는 UTC 시간으로 저장 
+#UI 입력 폼처리 및 출력 템플릿 처리 시에 time_zone 항목에서 설정한 시간을 자동으로 반영한다. 
 USE_TZ = True
 
 
